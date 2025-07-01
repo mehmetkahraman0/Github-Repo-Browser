@@ -3,13 +3,13 @@ import type { FollowersFollowing } from "../../models/FollowersFollowing";
 import axios from "axios";
 
 interface FollowersState {
-    followers: FollowersFollowing[]
+    followings: FollowersFollowing[]
     loading: boolean,
     error: string | null
 }
 
 const initialState: FollowersState = {
-    followers: [],
+    followings: [],
     loading: false,
     error: null
 }
@@ -21,7 +21,7 @@ export const fetchFollowingApi = createAsyncThunk<FollowersFollowing[], string>(
 })
 
 
-const followersApiSlice = createSlice({
+const followingsApiSlice = createSlice({
     name: "following",
     initialState,
     reducers: {},
@@ -33,7 +33,7 @@ const followersApiSlice = createSlice({
             })
             .addCase(fetchFollowingApi.fulfilled, (state, action) => {
                 state.loading = false
-                state.followers = action.payload
+                state.followings = action.payload
             })
             .addCase(fetchFollowingApi.rejected, (state, action) => {
                 state.loading = true
@@ -42,4 +42,4 @@ const followersApiSlice = createSlice({
     }
 })
 
-export default followersApiSlice.reducer
+export default followingsApiSlice.reducer

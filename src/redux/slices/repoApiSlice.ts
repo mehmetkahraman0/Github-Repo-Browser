@@ -16,11 +16,11 @@ const initialState: RepoState = {
 }
 
 export const fetchRepoApi = createAsyncThunk<Repo[], string>("fetch/repos", async (loginUser) => {
-    const res = await axios(`https://api.github.com/users/${loginUser}/repos`)
+    const res = await axios.get(`https://api.github.com/users/${loginUser}/repos`)
     return res.data
 })
 
-const userApiSlice = createSlice({
+const repoApiSlice = createSlice({
     name: "repo",
     initialState,
     reducers: {},
@@ -42,4 +42,4 @@ const userApiSlice = createSlice({
     }
 })
 
-export default userApiSlice.reducer
+export default repoApiSlice.reducer

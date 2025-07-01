@@ -1,8 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
+import userApiSlice from './slices/userApiSlice';
+import followingsApiSlice from './slices/followingApiSlice';
+import followersApiSlice from "./slices/followersApiSlice"
+import repoApiSlice from './slices/repoApiSlice';
+import receivedEventApiSlice from './slices/receivedEventApiSlice';
+import eventApiSlice from './slices/eventApiSlice';
+import subscriptionApiSlice from './slices/subscriptionApiSlice';
 
 export const store = configureStore({
     reducer: {
-        
+        user: userApiSlice,
+        following: followingsApiSlice,
+        follower: followersApiSlice,
+        repo: repoApiSlice,
+        receivedEvent: receivedEventApiSlice,
+        event: eventApiSlice,
+        subscriptions: subscriptionApiSlice
     }
 })
 

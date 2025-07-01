@@ -20,7 +20,7 @@ export const fetchSubscription = createAsyncThunk<Repo[], string>("fetch/subscri
     return res.data
 })
 
-const userApiSlice = createSlice({
+const subscriptionApiSlice = createSlice({
     name: "subscription",
     initialState,
     reducers: {},
@@ -42,4 +42,4 @@ const userApiSlice = createSlice({
     }
 })
 
-export default userApiSlice.reducer
+export default subscriptionApiSlice.reducer

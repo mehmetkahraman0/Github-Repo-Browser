@@ -19,7 +19,7 @@ export const fetchEventApi = createAsyncThunk<Event[], string>("fetch/event", as
     return res.data
 })
 
-const userApiSlice = createSlice({
+const eventApiSlice = createSlice({
     name: "event",
     initialState,
     reducers: {},
@@ -41,4 +41,4 @@ const userApiSlice = createSlice({
     }
 })
 
-export default userApiSlice.reducer
+export default eventApiSlice.reducer

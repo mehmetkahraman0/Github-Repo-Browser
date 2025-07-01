@@ -1,21 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import type { Event } from "../../models/Event";
+import type { Repo } from "../../models/Repo";
 
-interface EventState {
-    events: Event[];
+interface RepoState {
+    stars: Repo[];
     loading: boolean;
     error: string | null;
 }
 
-const initialState: EventState = {
-    events: [],
+const initialState: RepoState = {
+    stars: [],
     loading: false,
     error: null,
+
 }
 
-export const fetchEventApi = createAsyncThunk<Event[], string>("fetch/event", async (loginUser) => {
-    const res = await axios(`https://api.github.com/users/${loginUser}/events`, {
+export const fetchStarApi = createAsyncThunk<Repo[], string>("fetch/repos", async (loginUser) => {
+    const res = await axios.get(`https://api.github.com/users/${loginUser}/starred`, {
         headers: {
             Authorization: "Bearer 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"
         }
@@ -23,26 +24,26 @@ export const fetchEventApi = createAsyncThunk<Event[], string>("fetch/event", as
     return res.data
 })
 
-const eventApiSlice = createSlice({
-    name: "event",
+const starApiSlice = createSlice({
+    name: "repo",
     initialState,
     reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(fetchEventApi.pending, state => {
+            .addCase(fetchStarApi.pending, state => {
                 state.error = null
                 state.loading = true
             })
-            .addCase(fetchEventApi.fulfilled, (state, action) => {
-                state.events = action.payload
-                console.log(state.events)
+            .addCase(fetchStarApi.fulfilled, (state, action) => {
+                state.stars = action.payload
+                console.log(state.stars)
                 state.loading = false
             })
-            .addCase(fetchEventApi.rejected, (state, action) => {
+            .addCase(fetchStarApi.rejected, (state, action) => {
                 state.error = action.error.message || "User Api Fetch Error"
                 state.loading = true
             })
     }
 })
 
-export default eventApiSlice.reducer
+export default starApiSlice.reducer

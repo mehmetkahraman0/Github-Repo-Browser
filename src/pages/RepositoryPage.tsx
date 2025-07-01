@@ -5,21 +5,27 @@ import { useEffect } from 'react'
 import { fetchRepoApi } from '../redux/slices/repoApiSlice'
 import { currentUser } from '../models/User'
 import RepoComponents from '../Components/RepoComponents'
-import type { Repo } from '../models/Repo'
 
-const MainPage = () => {
-    const repos = useSelector((state: RootState) => { state.repo.repos })
+const RepositoryPage = () => {
+    const repos = useSelector((state: RootState) => state.repo.repos)
     console.log(repos)
     const dispatch = useDispatch<AppDispatch>()
     useEffect(() => {
         dispatch(fetchRepoApi(currentUser.login))
     }, [dispatch])
     return (
-        <div className='flex flex-row justify-center gap-3 mt-5 mx-5'>
+        <div className='flex flex-col md:flex-row justify-center gap-7 mt-10'>
             <UserCard />
-            
+            <div className='flex flex-col items-center md:w-[900px]'>
+                {repos.map((item, index) => (
+                    <RepoComponents repo={item} key={index} />
+                ))}
+            </div>
         </div>
     )
 }
 
-export default MainPage
+export default RepositoryPage
+
+
+

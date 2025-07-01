@@ -6,6 +6,7 @@ import repoApiSlice from './slices/repoApiSlice';
 import receivedEventApiSlice from './slices/receivedEventApiSlice';
 import eventApiSlice from './slices/eventApiSlice';
 import subscriptionApiSlice from './slices/subscriptionApiSlice';
+import starApiSlice from './slices/starApiSlice';
 
 export const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
         repo: repoApiSlice,
         receivedEvent: receivedEventApiSlice,
         event: eventApiSlice,
-        subscriptions: subscriptionApiSlice
+        subscriptions: subscriptionApiSlice,
+        star: starApiSlice
     }
 })
 

@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { FollowersFollowing } from "../../models/FollowersFollowing";
 import axios from "axios";
+import type { User } from "../../models/User";
 
 interface FollowersState {
-    followings: FollowersFollowing[]
+    followings: User[]
     loading: boolean,
     error: string | null
 }
@@ -15,9 +16,22 @@ const initialState: FollowersState = {
 }
 
 
-export const fetchFollowingApi = createAsyncThunk<FollowersFollowing[], string>("fetch/following", async (loginUser) => {
-    const res = await axios(`https://api.github.com/users/${loginUser}/following`)
-    return res.data
+export const fetchFollowingApi = createAsyncThunk<User[], string>("fetch/following", async (loginUser) => {
+    const res = await axios(`https://api.github.com/users/${loginUser}/following`, {
+        headers: {
+            Authorization: "Bearer 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"
+        }
+    })
+    const followingsUserDetails = await Promise.all(
+        res.data.map((following: FollowersFollowing) =>
+            axios.get(following.url, {
+                headers: {
+                    Authorization: "Bearer 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"
+                }
+            }).then(res => res.data)
+        )
+    )
+    return followingsUserDetails
 })
 
 

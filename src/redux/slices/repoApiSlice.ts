@@ -16,7 +16,11 @@ const initialState: RepoState = {
 }
 
 export const fetchRepoApi = createAsyncThunk<Repo[], string>("fetch/repos", async (loginUser) => {
-    const res = await axios.get(`https://api.github.com/users/${loginUser}/repos`)
+    const res = await axios.get(`https://api.github.com/users/${loginUser}/repos`, {
+        headers: {
+            Authorization: "Bearer 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"
+        }
+    })
     return res.data
 })
 

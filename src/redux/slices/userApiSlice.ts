@@ -19,7 +19,11 @@ const initialState: UserState = {
 }
 
 export const fetchUserApi = createAsyncThunk<User, string>("fetch/user", async (loginUser) => {
-    const res = await axios.get<User>(`https://api.github.com/users/${loginUser}`)
+    const res = await axios.get<User>(`https://api.github.com/users/${loginUser}`, {
+        headers: {
+            Authorization: "Bearer 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"
+        }
+    })
 
     console.log(res.data)
     return res.data

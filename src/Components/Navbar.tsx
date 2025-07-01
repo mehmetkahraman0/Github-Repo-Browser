@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserApi, setSelectedPage, setVisitedUser } from "../redux/slices/userApiSlice";
 import { currentUser } from "../models/User";
 import type { AppDispatch, RootState } from '../redux/store';
+import { fetchRepoApi } from "../redux/slices/repoApiSlice";
 
 const Navbar = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     const [isMenü, setIsMenü] = useState(false)
 
-    const { user, loading, error } = useSelector((state: RootState) => state.user);
+    const { user } = useSelector((state: RootState) => state.user);
 
 
     useEffect(() => {
@@ -20,16 +21,21 @@ const Navbar = () => {
         dispatch(fetchUserApi(currentUser.login));
     }, [dispatch]);
     console.log(user)
+
     const handleSelect = (item: string) => {
         dispatch(setSelectedPage(item))
         dispatch(setVisitedUser(item))
+        dispatch(fetchRepoApi(currentUser.login))
+        dispatch(setSelectedPage(""))
+
     }
 
 
     return (
         <div className="relative h-[60px] mx-3 flex flex-row justify-between items-center">
-            <div>
+            <div className="flex flex-row gap-5">
                 <Link to="/"> <FaGithub onClick={() => dispatch(setVisitedUser(""))} className="text-[26px]" /> </Link>
+                <p className="font-semibold">{user.login}</p>
             </div>
             <div>
                 <img onClick={() => setIsMenü(!isMenü)} className="h-[40px] rounded-[50%]" src={user.avatar_url} alt="profile_foto" />

@@ -12,13 +12,12 @@ const UserCard = () => {
     const dispatch = useDispatch<AppDispatch>()
     const { user:usera } = useParams()
     const { user } = useSelector((state: RootState) => state.user)
-
     const following = useSelector((state: RootState) => state.following.followings)
     const follower = useSelector((state: RootState) => state.follower.followers)
     let selectedUser = usera || currentUser.login
 
     useEffect(() => {
-        dispatch(fetchUserApi("mehmetkahraman0"))
+        dispatch(fetchUserApi(selectedUser))
         dispatch(fetchFollowingApi(selectedUser))
         dispatch(fetchFollowersApi(selectedUser))
     }, [dispatch,usera])

@@ -7,7 +7,6 @@ type StarComponentProps = {
 }
 
 const StartComponent = ({ repo }: StarComponentProps) => {
-
     const fark = formatDistanceToNow(repo.updated_at, { addSuffix: true });
 
     return (

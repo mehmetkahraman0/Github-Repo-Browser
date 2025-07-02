@@ -12,7 +12,6 @@ const RepositoryPage = () => {
     const repos = useSelector((state: RootState) => state.repo.repos)
     const { user } = useParams()
     console.log(repos)
-
     const selectedUser = user || currentUser.login
 
     useEffect(() => {

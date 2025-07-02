@@ -12,7 +12,6 @@ const Navbar = () => {
     const [isMenü, setIsMenü] = useState(false)
     const { user } = useSelector((state: RootState) => state.user);
 
-
     useEffect(() => {
         dispatch(fetchUserApi(currentUser.login));
     }, [dispatch]);
@@ -23,7 +22,6 @@ const Navbar = () => {
         dispatch(setVisitedUser("mehmetkahraman0"))
         setIsMenü(false)
     }
-
 
     return (
         <div className="relative h-[60px] mx-3 flex flex-row justify-between items-center">

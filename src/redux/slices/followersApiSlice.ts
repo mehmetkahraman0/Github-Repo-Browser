@@ -15,7 +15,6 @@ const initialState: FollowersState = {
     error: null
 }
 
-
 export const fetchFollowersApi = createAsyncThunk<User[], string>("fetch/followers", async (loginUser) => {
     const res = await axios(`https://api.github.com/users/${loginUser}/followers`)
     const followersUserDetails = await Promise.all(
@@ -26,7 +25,6 @@ export const fetchFollowersApi = createAsyncThunk<User[], string>("fetch/followe
     return followersUserDetails
 
 })
-
 
 const followersApiSlice = createSlice({
     name: "followers",

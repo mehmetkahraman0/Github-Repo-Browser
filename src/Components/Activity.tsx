@@ -5,12 +5,14 @@ import { currentUser } from "../models/User"
 import { fetchEventApi } from "../redux/slices/eventApiSlice"
 import { GoFold, GoUnfold } from "react-icons/go"
 import type { Event } from "../models/Event"
+import { useParams } from "react-router-dom"
 
 const ActivityComponent = () => {
     const dispatch = useDispatch<AppDispatch>()
     const [isOpen, setIsOpen] = useState(true)
     const event = useSelector((state: RootState) => state.event.events)
-
+    const { user } = useParams()
+    const selectedUser = user || currentUser.login
     interface GroupedEvent {
         groupName: string;
         items: Event[];
@@ -38,13 +40,11 @@ const ActivityComponent = () => {
         return groupedList;
     };
 
-
-
     const groupEvent = groupByActivity(event)
     console.log(groupEvent)
 
     useEffect(() => {
-        dispatch(fetchEventApi(currentUser.login))
+        dispatch(fetchEventApi(selectedUser))
     }, [])
 
     return (

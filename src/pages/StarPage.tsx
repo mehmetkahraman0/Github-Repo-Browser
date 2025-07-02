@@ -12,7 +12,6 @@ const StarPage = () => {
     const dispatch = useDispatch<AppDispatch>()
     const stars = useSelector((state: RootState) => state.star.stars)
     const { user } = useParams()
-
     const selectedUser = user || currentUser.login
 
     useEffect(() => {

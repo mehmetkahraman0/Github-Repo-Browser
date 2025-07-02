@@ -12,7 +12,6 @@ type RepoProps = {
 }
 
 const RepoComponents = ({ repo }: RepoProps) => {
-
     const dispatch = useDispatch<AppDispatch>()
     const visitedUser = useSelector((state: RootState) => state.user.visitedUser)
     const fark = formatDistanceToNow(repo.updated_at, { addSuffix: true});

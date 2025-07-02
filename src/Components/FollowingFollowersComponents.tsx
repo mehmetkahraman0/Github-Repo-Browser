@@ -1,15 +1,22 @@
 import { GoLocation, GoOrganization } from 'react-icons/go'
-import type { User } from './User'
+import type { User } from '../models/User'
 import { useDispatch } from 'react-redux'
 import { setVisitedUser } from '../redux/slices/userApiSlice'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 type FFProps = {
     user: User
 }
 
-
 const FollowingFollowersComponents = ({ user }: FFProps) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleSelectUser = () => {
+        dispatch(setVisitedUser(user.login))
+        navigate()
+    }
+
     return (
         <div className='flex flex-col max-w-[1000px] w-full px-4 h-fit'>
             <div className=" flex flex-row gap-4 max-w-[1000px] w-full px-4 h-fit my-5">
@@ -18,8 +25,8 @@ const FollowingFollowersComponents = ({ user }: FFProps) => {
                 </div>
                 <div className="flex flex-col gap-1">
                     <div className='flex flex-row gap-4 '>
-                        <p className='hover:text-blue-500 cursor-pointer'>{user.name}</p>
-                        <p className='font-light'>{user.login}</p>
+                        <p onClick={() => handleSelectUser()} className='hover:text-blue-500 cursor-pointer'>{user.name}</p>
+                        <p onClick={() => dispatch(setVisitedUser(user.login))} className='font-light'>{user.login}</p>
                     </div>
                     <p className="flex flex-row font-light text-[14px]">{user.bio}</p>
                     <p className="text-[14px] font-light"></p>

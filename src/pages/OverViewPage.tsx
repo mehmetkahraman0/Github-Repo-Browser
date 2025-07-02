@@ -4,13 +4,14 @@ import UserCard from "../Components/UserCard"
 
 const OverViewPage = () => {
     return (
-        <div className='flex flex-col justify-center md:flex-row  gap-7 mt-10 '>
-            <UserCard />
-            <div className="flex flex-col items-center md:w-[900px]">
-                <div className='flex flex-col items-center sm:[400px] md:w-[900px]'>
-                    <PopularRepo />
-                </div>
-                <div className='flex flex-col items-center md:w-[900px] mt-10'>
+        <div className="flex flex-col md:flex-row gap-6 mt-10 px-4">
+            <div className="md:w-[300px] w-full mb-6 lg:mb-0">
+                <UserCard />
+            </div>
+
+            <div className="flex flex-col gap-10 w-full">
+                <PopularRepo />
+                <div className="w-full">
                     <ActivityComponent />
                 </div>
             </div>

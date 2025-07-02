@@ -8,16 +8,16 @@ import { currentUser } from "../models/User"
 const PopularRepo = () => {
     const dispatch = useDispatch<AppDispatch>()
     const sub = useSelector((state: RootState) => state.subscriptions.subscription)
-    const selectSub = sub.slice(0,6)
+    const selectSub = sub.slice(0, 6)
     console.log(sub)
     useEffect(() => {
         dispatch(fetchSubscription(currentUser.login))
     }, [])
     return (
-        <div className='flex flex-col justify-between w-full'>
-            <header className="text-[20px] mb-2">Popular Repository</header>
+        <div className="flex flex-col w-full">
+            <header className="text-lg font-semibold mb-2">Popular Repository</header>
             <hr />
-            <div className='flex flex-row flex-wrap justify-between items-center w-full gap-10 mt-5'>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
                 {selectSub.map((item, index) => (
                     <PopularRepoComponent repo={item} key={index} />
                 ))}

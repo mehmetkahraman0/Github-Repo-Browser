@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import UserCard from "../Components/UserCard"
 import {type AppDispatch, type RootState } from "../redux/store"
-import FollowingFollowersComponents from "../models/FollowingFollowersComponents"
+import FollowingFollowersComponents from "../Components/FollowingFollowersComponents"
 import { useEffect } from "react"
 import { fetchFollowersApi } from "../redux/slices/followersApiSlice"
 import { currentUser } from "../models/User"

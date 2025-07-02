@@ -14,7 +14,7 @@ const RepositoryPage = () => {
         dispatch(fetchRepoApi(currentUser.login))
     }, [dispatch])
     return (
-        <div className='flex flex-col md:flex-row justify-center gap-7 mt-10'>
+        <div className='flex flex-col md:flex-row justify-center mt-10 items'>
             <UserCard />
             <div className='flex flex-col items-center md:w-[900px]'>
                 {repos.map((item, index) => (

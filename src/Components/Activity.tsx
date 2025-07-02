@@ -24,7 +24,6 @@ const ActivityComponent = () => {
             groupName,
             items
         }));
-
         return groupedList;
     }
 
@@ -46,9 +45,9 @@ const ActivityComponent = () => {
             <div className="flex flex-col gap-2">
                 {isOpen
                     ? groupEvent.map((item, index) => (
-                        <div key={index} className="flex flex-row gap-10 items-end">
-                            <p className="text-blue-700 cursor-pointer">{item.groupName}</p>
-                            <p className="font-light text-[12px]"> Commit {item.items.length}</p>
+                        <div key={index} className="flex flex-row gap-5 items-end">
+                            <p className="text-blue-700 cursor-pointer text-[12px]">{item.groupName}</p>
+                            <p className="font-light text-[10px]"> Commit {item.items.length}</p>
                         </div>
                     ))
                     : <hr className="text-blue-700"/>

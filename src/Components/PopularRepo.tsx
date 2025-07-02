@@ -14,7 +14,7 @@ const PopularRepo = () => {
         dispatch(fetchSubscription(currentUser.login))
     }, [])
     return (
-        <div className='flex flex-col justify-between'>
+        <div className='flex flex-col justify-between w-full'>
             <header className="text-[20px] mb-2">Popular Repository</header>
             <hr />
             <div className='flex flex-row flex-wrap justify-between items-center w-full gap-10 mt-5'>

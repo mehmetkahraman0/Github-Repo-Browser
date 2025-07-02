@@ -8,7 +8,6 @@ const OverViewPage = () => {
             <div className="md:w-[300px] w-full mb-6 lg:mb-0">
                 <UserCard />
             </div>
-
             <div className="flex flex-col gap-10 w-full">
                 <PopularRepo />
                 <div className="w-full">

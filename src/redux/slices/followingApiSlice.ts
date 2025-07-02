@@ -17,18 +17,10 @@ const initialState: FollowersState = {
 
 
 export const fetchFollowingApi = createAsyncThunk<User[], string>("fetch/following", async (loginUser) => {
-    const res = await axios(`https://api.github.com/users/${loginUser}/following`, {
-        headers: {
-            Authorization: "Bearer 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"
-        }
-    })
+    const res = await axios(`https://api.github.com/users/${loginUser}/following`)
     const followingsUserDetails = await Promise.all(
         res.data.map((following: FollowersFollowing) =>
-            axios.get(following.url, {
-                headers: {
-                    Authorization: "Bearer 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"
-                }
-            }).then(res => res.data)
+            axios.get(following.url).then(res => res.data)
         )
     )
     return followingsUserDetails

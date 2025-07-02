@@ -15,11 +15,7 @@ const initialState: EventState = {
 }
 
 export const fetchEventApi = createAsyncThunk<Event[], string>("fetch/event", async (loginUser) => {
-    const res = await axios(`https://api.github.com/users/${loginUser}/events`, {
-        headers: {
-            Authorization: "Bearer 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"
-        }
-    })
+    const res = await axios(`https://api.github.com/users/${loginUser}/events`)
     return res.data
 })
 

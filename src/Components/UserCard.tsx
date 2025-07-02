@@ -18,11 +18,13 @@ const UserCard = () => {
     let selectedUser = usera || currentUser.login
 
     useEffect(() => {
-        dispatch(fetchUserApi(selectedUser))
+        dispatch(fetchUserApi("mehmetkahraman0"))
         dispatch(fetchFollowingApi(selectedUser))
         dispatch(fetchFollowersApi(selectedUser))
     }, [dispatch,usera])
 
+    console.log(selectedUser)
+    console.log(user)
     return (
         <div className="flex flex-col gap-2 h-auto ">
             <div className="flex flex-row gap-5 md:flex-col">

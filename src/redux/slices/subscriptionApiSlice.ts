@@ -16,11 +16,7 @@ const initialState: SubscriptionState = {
 }
 
 export const fetchSubscription = createAsyncThunk<Repo[], string | undefined>("fetch/subscription", async (loginUser) => {
-    const res = await axios.get(`https://api.github.com/users/${loginUser}/subscriptions`, {
-        headers: {
-            Authorization: "Bearer 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"
-        }
-    })
+    const res = await axios.get(`https://api.github.com/users/${loginUser}/subscriptions`)
     return res.data
 })
 

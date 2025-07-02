@@ -4,7 +4,7 @@ import UserCard from "../Components/UserCard"
 
 const OverViewPage = () => {
     return (
-        <div className="flex flex-col md:flex-row gap-6 mt-10 px-4">
+        <div className="flex flex-col md:flex-row justify-center gap-6 mt-10 xl:px-28 p-4">
             <div className="md:w-[300px] w-full mb-6 lg:mb-0">
                 <UserCard />
             </div>

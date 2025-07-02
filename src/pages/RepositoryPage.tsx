@@ -5,16 +5,21 @@ import { useEffect } from 'react'
 import { fetchRepoApi } from '../redux/slices/repoApiSlice'
 import { currentUser } from '../models/User'
 import RepoComponents from '../Components/RepoComponents'
+import { useParams } from 'react-router-dom'
 
 const RepositoryPage = () => {
-    const repos = useSelector((state: RootState) => state.repo.repos)
-    console.log(repos)
     const dispatch = useDispatch<AppDispatch>()
+    const repos = useSelector((state: RootState) => state.repo.repos)
+    const { user } = useParams()
+    console.log(repos)
+
+    const selectedUser = user || currentUser.login
+
     useEffect(() => {
-        dispatch(fetchRepoApi(currentUser.login))
-    }, [dispatch])
+        dispatch(fetchRepoApi(selectedUser))
+    }, [dispatch, user])
     return (
-        <div className='flex flex-col md:flex-row justify-center mt-10 items'>
+        <div className='flex flex-col md:flex-row justify-center gap-7 mt-10 items'>
             <UserCard />
             <div className='flex flex-col items-center md:w-[900px]'>
                 {repos.map((item, index) => (

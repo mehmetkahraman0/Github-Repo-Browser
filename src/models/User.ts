@@ -35,5 +35,7 @@ export interface User {
 }
 
 export const currentUser = {
-    login:"mehmetkahraman0"
+    login: "mehmetkahraman0",
+    avatar_url: "https://avatars.githubusercontent.com/u/139287624?v=4",
+    name: "Mehmet Kahraman",
 } 

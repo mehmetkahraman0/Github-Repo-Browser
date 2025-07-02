@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
-body{
-margin-left: 10px;
-margin-right: 10px;
-margin-bottom:100px
+body {
+    max-width: 1450px;
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 0 16px;
+    box-sizing: border-box;
 }

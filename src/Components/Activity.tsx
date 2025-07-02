@@ -4,13 +4,20 @@ import { useEffect, useState } from "react"
 import { currentUser } from "../models/User"
 import { fetchEventApi } from "../redux/slices/eventApiSlice"
 import { GoFold, GoUnfold } from "react-icons/go"
+import type { Event } from "../models/Event"
 
 const ActivityComponent = () => {
     const dispatch = useDispatch<AppDispatch>()
     const [isOpen, setIsOpen] = useState(true)
     const event = useSelector((state: RootState) => state.event.events)
-    const groupByActivity = (events: any) => {
-        const groups = events.reduce((acc: any, item: any) => {
+
+    interface GroupedEvent {
+        groupName: string;
+        items: Event[];
+    }
+
+    const groupByActivity = (events: Event[]): GroupedEvent[] => {
+        const groups = events.reduce<Record<string, Event[]>>((acc, item) => {
             const repoName = item.repo.name;
 
             if (!acc[repoName]) {
@@ -20,12 +27,18 @@ const ActivityComponent = () => {
             acc[repoName].push(item);
             return acc;
         }, {});
-        const groupedList = Object.entries(groups).map(([groupName, items]) => ({
-            groupName,
-            items
-        }));
+
+        const groupedList: GroupedEvent[] = Object.entries(groups).map(
+            ([groupName, items]) => ({
+                groupName,
+                items,
+            })
+        );
+
         return groupedList;
-    }
+    };
+
+
 
     const groupEvent = groupByActivity(event)
     console.log(groupEvent)
@@ -50,7 +63,7 @@ const ActivityComponent = () => {
                             <p className="font-light text-[10px]"> Commit {item.items.length}</p>
                         </div>
                     ))
-                    : <hr className="text-blue-700"/>
+                    : <hr className="text-blue-700" />
                 }
             </div>
         </div>

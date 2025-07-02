@@ -14,10 +14,11 @@ function App() {
       <SideBar />
       <Routes>
         <Route path="/" element={<OverViewPage />}></Route>
-        <Route path="/repository" element={<RepositoryPage />}></Route>
-        <Route path="/star" element={<StarPage />}></Route>
-        <Route path="/followers" element={<FollowersPage />}></Route>
-        <Route path="/followings" element={<FollowingPage />}></Route>
+        <Route path="/:user" element={<OverViewPage />}></Route>
+        <Route path="/:user/repository" element={<RepositoryPage />}></Route>
+        <Route path="/:user/star" element={<StarPage />}></Route>
+        <Route path="/:user/followers" element={<FollowersPage />}></Route>
+        <Route path="/:user/followings" element={<FollowingPage />}></Route>
 
       </Routes>
     </>

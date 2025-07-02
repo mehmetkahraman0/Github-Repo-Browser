@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { currentUser, type User } from "../../models/User";
 import axios from "axios";
 
@@ -6,7 +6,7 @@ interface UserState {
     user: User;
     loading: boolean;
     error: string | null;
-    visitedUser: string,
+    visitedUser: string | undefined,
     selectedPage: string
 }
 
@@ -36,7 +36,7 @@ const userApiSlice = createSlice({
         setVisitedUser: (state, action) => {
             state.visitedUser = action.payload
         },
-        setSelectedPage: (state, action) => {
+        setSelectedPage: (state, action: PayloadAction<string>) => {
             state.selectedPage = action.payload
         }
     },
